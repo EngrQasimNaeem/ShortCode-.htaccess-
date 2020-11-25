@@ -1,4 +1,16 @@
+// Code is for removal of .php from the end of every php file
+
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME}  !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [NC,L]
+
+//Code is for the removal of Unnecessary subfolders of a project
+
+RewriteEngine on
+
+RewriteRule ^([a-z0-9_-]+)\.html$ /subFolder1/subFolder2/$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php|asset|robots\.txt)
+RewriteRule ^(.*)$ /subFolder1/subFolder2/$1 [QSA,L]
